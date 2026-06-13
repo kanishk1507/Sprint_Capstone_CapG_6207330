@@ -1,5 +1,0 @@
-[INFO] Entering login credentials
-[PASS] Login successful
-[INFO] Creating Checking Account
-[PASS] Checking Account created successfully
-<?xml version="1.0" encoding="UTF-8"?><accounts><account><id>13344</id><customerId>12212</customerId><type>CHECKING</type><balance>4404.93</balance></account><account><id>18672</id><customerId>12212</customerId><type>CHECKING</type><balance>0.00</balance></account><account><id>18783</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account><account><id>18894</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>19005</id><customerId>12212</customerId><type>SAVINGS</type><balance>0.00</balance></account><account><id>19116</id><customerId>12212</customerId><type>SAVINGS</type><balance>200.00</balance></account><account><id>19227</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account><account><id>19338</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account></accounts>
