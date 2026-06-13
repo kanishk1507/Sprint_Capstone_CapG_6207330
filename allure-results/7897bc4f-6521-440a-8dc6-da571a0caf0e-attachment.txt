@@ -1,0 +1,6 @@
+Balance Before Transfer : 1231.1
+[INFO] Entering login credentials
+[PASS] Login successful
+[INFO] Initiating fund transfer
+[PASS] Fund transfer initiated
+Balance After Transfer : 1231.1
