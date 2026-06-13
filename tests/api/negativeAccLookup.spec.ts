@@ -5,7 +5,7 @@ import { test, expect } from "@playwright/test";
 
 test("TC-API-NEG-01 Invalid Account Lookup", async ({ request }) => {
 
-    const invalidAccountId = 12345;
+    const invalidAccountId = 999999;
 
     const response = await request.get(
         `https://parabank.parasoft.com/parabank/services/bank/accounts/${invalidAccountId}`
