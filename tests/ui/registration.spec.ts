@@ -4,7 +4,7 @@ import Register from "../../pages/registration.page.ts";
 // Test Case  : Registration — Skipped (test.skip)
 // Scenario   : N/A     FR Coverage: FR-01
 
-test.skip('Registration', async ({page})=>{
+test('Registration', async ({page})=>{
  const register =new Register(page);
  await register.navigate();
  await register.registerUser();

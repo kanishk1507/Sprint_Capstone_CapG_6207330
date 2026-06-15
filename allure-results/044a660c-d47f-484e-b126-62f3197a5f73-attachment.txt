@@ -1,0 +1,4 @@
+[INFO] Entering login credentials
+[PASS] Login successful
+[INFO] Creating Checking Account
+[PASS] Checking Account created successfully
