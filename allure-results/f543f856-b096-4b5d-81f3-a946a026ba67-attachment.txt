@@ -1,6 +1,0 @@
-Balance Before Transfer : 4622.93
-[INFO] Entering login credentials
-[PASS] Login successful
-[INFO] Initiating fund transfer
-[PASS] Fund transfer initiated
-Balance After Transfer : 4622.93

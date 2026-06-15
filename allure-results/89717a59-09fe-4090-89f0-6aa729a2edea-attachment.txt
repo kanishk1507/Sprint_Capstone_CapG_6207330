@@ -1,4 +1,0 @@
-[INFO] Entering login credentials
-[PASS] Login successful
-[INFO] Initiating fund transfer
-[PASS] Fund transfer initiated
