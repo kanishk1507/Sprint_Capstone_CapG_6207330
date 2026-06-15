@@ -34,7 +34,7 @@ export default defineConfig({
     screenshot: "only-on-failure",
     trace: 'on-first-retry',
     video: "retain-on-failure",
-    headless: false,
+    headless: true,
   },
 
   /* Configure projects for major browsers */
