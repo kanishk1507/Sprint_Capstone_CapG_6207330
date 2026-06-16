@@ -13,8 +13,8 @@ test("TC-RL-UI-01 Request Loan", async({page})=>{
     await login.navigateToLoginPage();
     await login.login();
     await loan.applyForLoan(
-        "1000",
-        "100"
+        "10000",
+        "1000"
     );
     await loan.verifyLoanProcessed();
     const status =await loan.getLoanStatus();

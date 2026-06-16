@@ -1,0 +1,62 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api\accountTypeValidation.spec.ts >> TC-API-02 Validate Account Type
+- Location: tests\api\accountTypeValidation.spec.ts:9:5
+
+# Error details
+
+```
+Error: expect(received).toBeLessThan(expected)
+
+Matcher error: received value must be a number or bigint
+
+Received has type:  string
+Received has value: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><accounts><account><id>12345</id><customerId>12212</customerId><type>CHECKING</type><balance>-5450.00</balance></account><account><id>12456</id><customerId>12212</customerId><type>CHECKING</type><balance>980000231.45</balance></account><account><id>12567</id><customerId>12212</customerId><type>CHECKING</type><balance>-979999901.00</balance></account><account><id>12678</id><customerId>12212</customerId><type>SAVINGS</type><balance>-100.00</balance></account><account><id>12789</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account><account><id>12900</id><customerId>12212</customerId><type>CHECKING</type><balance>0.00</balance></account><account><id>13011</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account><account><id>13122</id><customerId>12212</customerId><type>CHECKING</type><balance>1090.00</balance></account><account><id>13233</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account><account><id>13344</id><customerId>12212</customerId><type>SAVINGS</type><balance>631.10</balance></account><account><id>14343</id><customerId>12212</customerId><type>SAVINGS</type><balance>100.00</balance></account><account><id>14454</id><customerId>12212</customerId><type>SAVINGS</type><balance>100.00</balance></account><account><id>14565</id><customerId>12212</customerId><type>SAVINGS</type><balance>100.00</balance></account><account><id>21225</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account><account><id>21447</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account><account><id>23667</id><customerId>12212</customerId><type>SAVINGS</type><balance>100.00</balance></account><account><id>23778</id><customerId>12212</customerId><type>SAVINGS</type><balance>100.00</balance></account><account><id>24000</id><customerId>12212</customerId><type>SAVINGS</type><balance>100.00</balance></account><account><id>43980</id><customerId>12212</customerId><type>SAVINGS</type><balance>50.00</balance></account><account><id>44091</id><customerId>12212</customerId><type>SAVINGS</type><balance>150.00</balance></account><account><id>44202</id><customerId>12212</customerId><type>SAVINGS</type><balance>50.00</balance></account><account><id>44313</id><customerId>12212</customerId><type>SAVINGS</type><balance>150.00</balance></account><account><id>44424</id><customerId>12212</customerId><type>SAVINGS</type><balance>50.00</balance></account><account><id>44535</id><customerId>12212</customerId><type>SAVINGS</type><balance>150.00</balance></account><account><id>48420</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>48531</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>48642</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>48753</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>48864</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>48975</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>49086</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>49197</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>49308</id><customerId>12212</customerId><type>LOAN</type><balance>1000.00</balance></account><account><id>49863</id><customerId>12212</customerId><type>SAVINGS</type><balance>100.00</balance></account><account><id>53082</id><customerId>12212</customerId><type>SAVINGS</type><balance>100.00</balance></account><account><id>53748</id><customerId>12212</customerId><type>SAVINGS</type><balance>100.00</balance></account><account><id>53970</id><customerId>12212</customerId><type>LOAN</type><balance>50.00</balance></account><account><id>54192</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account><account><id>54303</id><customerId>12212</customerId><type>CHECKING</type><balance>100.00</balance></account><account><id>54321</id><customerId>12212</customerId><type>CHECKING</type><balance>1351.12</balance></account></accounts>"
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from "@playwright/test";
+  2  | import { getCustomerId } from "../../utils/customerUtils";
+  3  | import loginData from "../../test-data/login.json";
+  4  | import ApiLogger from "../../utils/apiLogger";
+  5  | 
+  6  | // Test Case  : TC-API-02 — Account Types are CHECKING or SAVINGS
+  7  | // Scenario   : TS-04 — Account Type & Details Validation via API
+  8  | 
+  9  | test("TC-API-02 Validate Account Type", async ({request})=>{
+  10 | 
+  11 |     const customerId = await getCustomerId(
+  12 |         request,
+  13 |         loginData.username,
+  14 |         loginData.password
+  15 |     );
+  16 | 
+  17 |     const url =`https://parabank.parasoft.com/parabank/services/bank/customers/${customerId}/accounts`;
+  18 |     ApiLogger.request("GET", url);
+  19 | 
+  20 |     const response =await request.get(url);
+  21 | 
+  22 |     ApiLogger.response(response.status());
+  23 |     expect(response.status()).toBe(200);
+  24 |     const responseText = await response.text();
+  25 | 
+  26 |     const accountTypeMatch = responseText.match(/<type>(.*?)<\/type>/);
+  27 |     expect(accountTypeMatch).not.toBeNull();
+  28 |     const accountType = accountTypeMatch?.[1];
+  29 | 
+  30 |     expect(
+  31 |         ["CHECKING", "SAVINGS"]
+  32 |     ).toContain(accountType);
+  33 | 
+> 34 |     expect(responseText).toBeLessThan(2000);
+     |                          ^ Error: expect(received).toBeLessThan(expected)
+  35 | });
+```

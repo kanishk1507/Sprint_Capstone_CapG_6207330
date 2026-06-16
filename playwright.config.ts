@@ -34,7 +34,7 @@ export default defineConfig({
     screenshot: "only-on-failure",
     trace: 'on-first-retry',
     video: "retain-on-failure",
-    headless: true,
+    headless: false,
   },
 
   /* Configure projects for major browsers */
@@ -52,16 +52,6 @@ export default defineConfig({
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
-    // },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
     // },
 
     /* Test against branded browsers. */

@@ -1,0 +1,4 @@
+[INFO] Entering login credentials
+[PASS] Login successful
+[INFO] Applying for loan
+[PASS] Loan application submitted
